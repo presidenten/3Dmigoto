@@ -31,12 +31,9 @@ jobs:
     runs-on: windows-2022
 
     steps:
-    - name: Checkout commit 2f96f59
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-        ref: 2f96f59
-
+    - name: change to commit
+      run: |
+        git checkout 2f96f59
     - name: Show all Visual Studio installs
       shell: cmd
       run: |
@@ -77,13 +74,13 @@ jobs:
 # Add a new commit for the bump in version number.
 # We add the git pull --ff
 
-    - name: Commit version change
-      run: |
-        git config --global user.name 'CI Build'
-        git config --global user.email '3Dmigoto@bo3b.net'
-        # git pull --ff-only
-        # git commit -am "CI Build - ${{env.BUILD_VERSION}}"
-        # git push
+    # - name: Commit version change
+    #   run: |
+    #     git config --global user.name 'CI Build'
+    #     git config --global user.email '3Dmigoto@bo3b.net'
+    #     # git pull --ff-only
+    #     # git commit -am "CI Build - ${{env.BUILD_VERSION}}"
+    #     # git push
 
 # Now we can upload the remaining artifacts as the HelixMod version.
 # These artifacts are for testing, and not actual Releases.
