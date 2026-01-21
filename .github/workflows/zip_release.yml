@@ -31,10 +31,14 @@ jobs:
     runs-on: windows-2022
 
     steps:
+    - name: Checkout branch master
+      uses: actions/checkout@v4
+
     - name: change to commit
       shell: cmd
       run: |
         git checkout 2f96f59
+
     - name: Show all Visual Studio installs
       shell: cmd
       run: |
@@ -79,9 +83,9 @@ jobs:
     #   run: |
     #     git config --global user.name 'CI Build'
     #     git config --global user.email '3Dmigoto@bo3b.net'
-    #     # git pull --ff-only
-    #     # git commit -am "CI Build - ${{env.BUILD_VERSION}}"
-    #     # git push
+    #     git pull --ff-only
+    #     git commit -am "CI Build - ${{env.BUILD_VERSION}}"
+    #     git push
 
 # Now we can upload the remaining artifacts as the HelixMod version.
 # These artifacts are for testing, and not actual Releases.
