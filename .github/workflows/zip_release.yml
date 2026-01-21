@@ -32,6 +32,7 @@ jobs:
 
     steps:
     - name: change to commit
+      shell: cmd
       run: |
         git checkout 2f96f59
     - name: Show all Visual Studio installs
