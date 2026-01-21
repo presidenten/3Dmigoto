@@ -80,9 +80,9 @@ jobs:
       run: |
         git config --global user.name 'CI Build'
         git config --global user.email '3Dmigoto@bo3b.net'
-        git pull --ff-only
-        git commit -am "CI Build - ${{env.BUILD_VERSION}}"
-        git push
+        # git pull --ff-only
+        # git commit -am "CI Build - ${{env.BUILD_VERSION}}"
+        # git push
 
 # Now we can upload the remaining artifacts as the HelixMod version.
 # These artifacts are for testing, and not actual Releases.
