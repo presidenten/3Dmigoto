@@ -31,14 +31,15 @@ jobs:
     runs-on: windows-2022
 
     steps:
-    - name: Checkout branch master (full history)
+    - name: Checkout branch master
       uses: actions/checkout@v4
       with:
-        fetch-depth: 0
+        fetch-depth: 1
 
-    - name: change to commit
+    - name: Fetch and checkout commit
       shell: cmd
       run: |
+        git fetch --no-tags origin 2f96f59
         git checkout 2f96f59
 
     - name: Show all Visual Studio installs
