@@ -34,6 +34,7 @@ jobs:
     - name: Checkout commit 2f96f59
       uses: actions/checkout@v4
       with:
+        fetch-depth: 0
         ref: 2f96f59
 
     - name: Show all Visual Studio installs
