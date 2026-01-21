@@ -31,8 +31,10 @@ jobs:
     runs-on: windows-2022
 
     steps:
-    - name: Checkout branch master
+    - name: Checkout branch master (full history)
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
     - name: change to commit
       shell: cmd
