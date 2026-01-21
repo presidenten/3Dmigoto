@@ -34,12 +34,11 @@ jobs:
     - name: Checkout branch master
       uses: actions/checkout@v4
       with:
-        fetch-depth: 1
+        fetch-depth: 0
 
     - name: Fetch and checkout commit
       shell: cmd
       run: |
-        git fetch --no-tags origin 2f96f59
         git checkout 2f96f59
 
     - name: Show all Visual Studio installs
