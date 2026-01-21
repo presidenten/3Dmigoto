@@ -31,8 +31,10 @@ jobs:
     runs-on: windows-2022
 
     steps:
-    - name: Checkout branch master
+    - name: Checkout commit 2f96f59
       uses: actions/checkout@v4
+      with:
+        ref: 2f96f59
 
     - name: Show all Visual Studio installs
       shell: cmd
@@ -46,17 +48,17 @@ jobs:
         echo === Installed toolsets ===
         dir "C:\Program Files (x86)\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC"
         dir "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC"
-          
+
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v2
-      
-# VisualStudio2022 should be there in 'windows-latest'       
+
+# VisualStudio2022 should be there in 'windows-latest'
 #      with:
 #        vs-version: '2022'
 
     - name: Build via Publish.bat
       shell: cmd
-      run: call .\Publish.bat 
+      run: call .\Publish.bat
 
 # In order to pass the version number from the Publish.bat script back here to Actions,
 # we need to fetch it using powershell commands. Normal echo and cat don't work here.
@@ -70,9 +72,9 @@ jobs:
         cat ".\Zip Release\Version-*" | Set-Variable -Name "BUILD_VERSION"
         echo "Set BUILD_VERSION=" ${BUILD_VERSION}
         echo "BUILD_VERSION=${BUILD_VERSION}" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
-        
-# Add a new commit for the bump in version number.        
-# We add the git pull --ff 
+
+# Add a new commit for the bump in version number.
+# We add the git pull --ff
 
     - name: Commit version change
       run: |
@@ -81,7 +83,7 @@ jobs:
         git pull --ff-only
         git commit -am "CI Build - ${{env.BUILD_VERSION}}"
         git push
-        
+
 # Now we can upload the remaining artifacts as the HelixMod version.
 # These artifacts are for testing, and not actual Releases.
 
